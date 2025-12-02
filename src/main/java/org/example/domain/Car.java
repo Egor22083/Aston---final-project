@@ -11,6 +11,12 @@ public class Car implements Comparable<Car> {
         this.year = year;
     }
 
+    public Car(String model) {
+        this.model = model;
+        this.power = 0;
+        this.year = 0;
+    }
+
     public double getPower() {
         return power;
     }
@@ -23,6 +29,13 @@ public class Car implements Comparable<Car> {
         return year;
     }
 
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     @Override
     public int compareTo(Car o) {
