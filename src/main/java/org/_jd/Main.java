@@ -1,5 +1,6 @@
 package org._jd;
 
+import org.example.builder.CarBuilder;
 import org.example.comparators.strategy.CompareStrategy;
 import org.example.comparators.strategy.Comparisons;
 import org.example.domain.Car;
@@ -23,5 +24,7 @@ public class Main {
 
         cars.stream().sorted(new CompareStrategy().get(Comparisons.BY_MODEL)).forEach(System.out::println);
 
+
+        Car car = CarBuilder.name("Model").power(16.8).year(2004).build();
     }
 }
