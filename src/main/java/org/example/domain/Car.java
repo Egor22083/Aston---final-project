@@ -5,13 +5,13 @@ public class Car implements Comparable<Car> {
     private String model;
     private int year;
 
-    public Car(double power, String model, int year) {
+    Car(double power, String model, int year) {
         this.power = power;
         this.model = model;
         this.year = year;
     }
 
-    public Car(String model) {
+    Car(String model) {
         this.model = model;
         this.power = 0;
         this.year = 0;
