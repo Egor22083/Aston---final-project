@@ -1,5 +1,7 @@
 package org.example.domain;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
     private double power;
     private String model;
@@ -15,6 +17,19 @@ public class Car implements Comparable<Car> {
         this.model = model;
         this.power = 0;
         this.year = 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Double.compare(power, car.power) == 0 && year == car.year && Objects.equals(model, car.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(power, model, year);
     }
 
     public double getPower() {
