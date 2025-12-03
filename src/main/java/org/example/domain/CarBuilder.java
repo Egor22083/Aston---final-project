@@ -1,6 +1,4 @@
-package org.example.builder;
-
-import org.example.domain.Car;
+package org.example.domain;
 
 public class CarBuilder {
     private Car car;
