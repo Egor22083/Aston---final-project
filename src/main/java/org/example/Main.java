@@ -17,13 +17,14 @@ public class Main {
 
             workingUser.fillings(cars, length);//Здесь происходит магия заполнения
 
+            int fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
+
+            workingUser.sortObjects(cars, fieldForSorting);// Здесь происходит магия сортировки
 
             int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
 
             flag = workingUser.isExit();//Выйти из программы или нет
-
-
 
 
 

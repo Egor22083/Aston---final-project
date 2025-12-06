@@ -8,6 +8,8 @@ public class WorkingWithTheUser {
     private static final int EXIT_CHOICE = 2;
     private static final int FILL_IN_CHOICE = 3;
     private static final int RECORD_SELECTION_CHOICE = 2;
+    private static final int FIELDS_FOR_SORTING_CHOICE = 3;
+
     private static final Scanner scanner = new Scanner(System.in);
 
 
@@ -135,5 +137,46 @@ public class WorkingWithTheUser {
             exit = true;
         }
         return exit;
+    }
+
+
+    public int selectingFieldsForSorting(){
+        boolean flag = true;
+        Scanner scanner = new Scanner(System.in);
+        int field = 0;
+        while (flag){
+            try {
+
+                System.out.println("По какому из полей хотите отсортировать:\n" +
+                        "1. Мощность\n" +
+                        "2. Модель\n" +
+                        "3. Год производства");
+                field = scanner.nextInt();
+                if(field > FIELDS_FOR_SORTING_CHOICE || field < 0){
+                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                }else {
+                    flag = choiceExit(field) != 1;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели неправильный формат");
+                scanner.next();
+            }
+
+
+        }
+        return field;
+    }
+
+    public void sortObjects(Car[] cars, int field){
+        switch (field){
+            case 1:
+                //Сортировка по Мощности
+                break;
+            case 2:
+                //Сортировка по Модели
+                break;
+            case 3:
+                //Сортировка по Году производства
+        }
     }
 }
