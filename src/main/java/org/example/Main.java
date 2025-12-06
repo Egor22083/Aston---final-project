@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.nio.file.Path;
+
 public class Main {
     public static void main(String[] args) {
         boolean flag = true;
@@ -23,6 +25,16 @@ public class Main {
 
             int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
+            Path path = workingUser.choosingPath();//выбор пути
+
+            String fileName = workingUser.choosingFileName();//Выбор названия файла
+
+            Path fullPath = path.resolve(fileName);
+            System.out.println(fullPath);
+
+
+
+            workingUser.recordCars(record, cars);
 
             flag = workingUser.isExit();//Выйти из программы или нет
 

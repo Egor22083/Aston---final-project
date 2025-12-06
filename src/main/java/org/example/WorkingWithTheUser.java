@@ -1,5 +1,12 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,7 +36,7 @@ public class WorkingWithTheUser {
                     flag = false;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат");
+                System.out.println("Вы ввели неправильный формат данных");
                 scanner.next();
             }
 
@@ -58,7 +65,7 @@ public class WorkingWithTheUser {
                     flag = choiceExit(choice) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат");
+                System.out.println("Вы ввели неправильный формат данных");
                 scanner.next();
             }
 
@@ -69,7 +76,6 @@ public class WorkingWithTheUser {
     }
     public int lengthArray(){
         boolean flag = true;
-        Scanner scanner = new Scanner(System.in);
         int length = 0;
         while (flag){
             System.out.println("Теперь введи размер создаваемого массива");
@@ -78,7 +84,7 @@ public class WorkingWithTheUser {
 
             flag = choiceExit(length) != 1;
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат");
+                System.out.println("Вы ввели неправильный формат данных");
                 scanner.next();
             }
 
@@ -102,7 +108,6 @@ public class WorkingWithTheUser {
 
     public   int recordSelection(){
         boolean flag = true;
-        Scanner scanner = new Scanner(System.in);
         int record = 0;
         while (flag){
             try {
@@ -118,7 +123,7 @@ public class WorkingWithTheUser {
                     flag = choiceExit(record) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат");
+                System.out.println("Вы ввели неправильный формат данных");
                 scanner.next();
             }
 
@@ -128,7 +133,6 @@ public class WorkingWithTheUser {
 
     }
     public boolean isExit(){
-        Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         System.out.println("Хотите ли выйти из программы \n" +
                 "1. Да\n" +
@@ -142,7 +146,6 @@ public class WorkingWithTheUser {
 
     public int selectingFieldsForSorting(){
         boolean flag = true;
-        Scanner scanner = new Scanner(System.in);
         int field = 0;
         while (flag){
             try {
@@ -158,7 +161,7 @@ public class WorkingWithTheUser {
                     flag = choiceExit(field) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат");
+                System.out.println("Вы ввели неправильный формат данных");
                 scanner.next();
             }
 
@@ -178,5 +181,54 @@ public class WorkingWithTheUser {
             case 3:
                 //Сортировка по Году производства
         }
+    }
+
+
+    public Path choosingPath(){
+        boolean flag = true;
+        String path = null;
+        Path pathObj = null;
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+        while (flag){
+
+            System.out.println("Напишите путь, куда сохранить файл");
+
+            path = scanner.nextLine().trim();
+            pathObj = Paths.get(path);
+
+            if (path.isEmpty()) {
+                System.out.println("Путь не может быть пустым");
+                continue;
+            }
+            if (!Files.exists(pathObj)) {
+                System.out.println("Путь не существует: " + path);
+                System.out.println("Пожалуйста, введите существующий путь.");
+                continue;
+            }
+
+            flag = false;
+
+
+        }
+        return pathObj;
+    }
+
+    public String choosingFileName(){
+        System.out.println("Введите название файла");
+
+        return scanner.nextLine().trim();
+
+    }
+
+    public void recordCars(int record, Car[] cars){
+        switch (record){
+            case 1:
+                //Json
+            case 2:
+                //текстовый файл
+        }
+
     }
 }
