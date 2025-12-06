@@ -32,9 +32,17 @@ public class Main {
             Path fullPath = path.resolve(fileName);
             System.out.println(fullPath);
 
+            //Test
+//            Car cars1 = new Car(3.2, "m1", 2000);
+//            Car cars2 = new Car(4.2, "m2", 2001);
+//            Car cars3 = new Car(5.2, "m3", 2002);
+//            cars[0]= cars1;
+//            cars[1]= cars2;
+//            cars[2]= cars3;
 
 
-            workingUser.recordCars(record, cars);
+
+            workingUser.recordCars(record, cars, fullPath);//Запись в файл
 
             flag = workingUser.isExit();//Выйти из программы или нет
 

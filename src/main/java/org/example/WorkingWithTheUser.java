@@ -1,10 +1,6 @@
 package org.example;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.InputMismatchException;
@@ -222,12 +218,14 @@ public class WorkingWithTheUser {
 
     }
 
-    public void recordCars(int record, Car[] cars){
+    public void recordCars(int record, Car[] cars, Path path){
         switch (record){
             case 1:
                 //Json
             case 2:
                 //текстовый файл
+                WritingToFile writingToFile = new WritingToFile();
+                writingToFile.toTextFile(cars, path);
         }
 
     }
