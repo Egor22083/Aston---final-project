@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +12,7 @@ public class Main {
             int choice = workingUser.choosingFillIn(); //Выбор способа заполнения
             int length = workingUser.lengthArray(); // Выбор размера массива
 
+
             Car[] cars = new Car[length];
 
             workingUser.fillings(cars, length);//Здесь происходит магия заполнения
@@ -21,7 +21,7 @@ public class Main {
             int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
 
-            boolean exit = workingUser.isExit();//Выйти из программы или нет
+            flag = workingUser.isExit();//Выйти из программы или нет
 
 
 

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class WorkingWithTheUser {
@@ -7,7 +8,6 @@ public class WorkingWithTheUser {
     private static final int EXIT_CHOICE = 2;
     private static final int FILL_IN_CHOICE = 3;
     private static final int RECORD_SELECTION_CHOICE = 2;
-//    private static final int LENGTH_ARRAY_CHOICE = 2;
     private static final Scanner scanner = new Scanner(System.in);
 
 
@@ -15,14 +15,20 @@ public class WorkingWithTheUser {
         boolean flag = true;
         int exit = 0;
         while(flag){
-            System.out.println("Ваш выбор " + choice + "\nХотите оставить или поменять:\n" +
-                    "1. Оставить\n" +
-                    "2. Поменять");
-            exit = scanner.nextInt();
-            if(exit > 2 || exit < 1){
-                System.out.println("Вы ввели вариант, которого нет\n Пожалуйста, выберите из предложенных ");
-            }else {
-                flag = false;
+            try {
+
+                System.out.println("Ваш выбор " + choice + "\nХотите оставить или поменять:\n" +
+                        "1. Оставить\n" +
+                        "2. Поменять");
+                exit = scanner.nextInt();
+                if(exit > EXIT_CHOICE || exit < 1){
+                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                }else {
+                    flag = false;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели неправильный формат");
+                scanner.next();
             }
 
         }
@@ -36,13 +42,25 @@ public class WorkingWithTheUser {
         boolean flag = true;
         int choice = 0;
         while (flag) {
-            System.out.println("Выберите способ ввода данных\n" +
-                    "1. С файла\n" +
-                    "2. В ручную\n" +
-                    "3. Случайные данные");
-            choice = scanner.nextInt();
+            try {
 
-            flag = choiceExit(choice) != 1;
+                System.out.println("Выберите способ ввода данных\n" +
+                        "1. С файла\n" +
+                        "2. В ручную\n" +
+                        "3. Случайные данные");
+                choice = scanner.nextInt();
+                if(choice > FILL_IN_CHOICE || choice < 1){
+                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                }else{
+
+                    flag = choiceExit(choice) != 1;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели неправильный формат");
+                scanner.next();
+            }
+
+
 
         }
         return choice;
@@ -53,13 +71,13 @@ public class WorkingWithTheUser {
         int length = 0;
         while (flag){
             System.out.println("Теперь введи размер создаваемого массива");
+            try{
             length = scanner.nextInt();
-            System.out.println("Ваш размер массива " + length + "\nХотите оставить или поменять:\n" +
-                    "1. Оставить\n" +
-                    "2. Поменять");
-            int changes = scanner.nextInt();
-            if(changes == 1){
-                flag = false;
+
+            flag = choiceExit(length) != 1;
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели неправильный формат");
+                scanner.next();
             }
 
         }
@@ -85,13 +103,23 @@ public class WorkingWithTheUser {
         Scanner scanner = new Scanner(System.in);
         int record = 0;
         while (flag){
-            System.out.println("Ваш отсортированные данные готовы!\n" +
-                    "В каком виде вы хотите их получить:\n" +
-                    "1. JSON\n" +
-                    "2. Текстовый вид");
-            record = scanner.nextInt();
+            try {
 
-            flag = choiceExit(record) != 1;
+                System.out.println("Ваш отсортированные данные готовы!\n" +
+                        "В каком виде вы хотите их получить:\n" +
+                        "1. JSON\n" +
+                        "2. Текстовый вид");
+                record = scanner.nextInt();
+                if(record > RECORD_SELECTION_CHOICE || record < 0){
+                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                }else {
+                    flag = choiceExit(record) != 1;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели неправильный формат");
+                scanner.next();
+            }
+
 
         }
         return record;
@@ -103,7 +131,7 @@ public class WorkingWithTheUser {
         System.out.println("Хотите ли выйти из программы \n" +
                 "1. Да\n" +
                 "2. Нет");
-        if(scanner.nextInt() ==1){
+        if(scanner.nextInt() !=1){
             exit = true;
         }
         return exit;
