@@ -2,6 +2,8 @@ package org.example;
 
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class Main {
             int length = workingUser.lengthArray(); // Выбор размера массива
 
 
-            Car[] cars = new Car[length];
+            List<Car> cars = new ArrayList<>();
 
             workingUser.fillings(cars, length);//Здесь происходит магия заполнения
 
@@ -31,14 +33,14 @@ public class Main {
 
             Path fullPath = path.resolve(fileName);
             System.out.println(fullPath);
-
-            //Test
+//
+//
 //            Car cars1 = new Car(3.2, "m1", 2000);
 //            Car cars2 = new Car(4.2, "m2", 2001);
 //            Car cars3 = new Car(5.2, "m3", 2002);
-//            cars[0]= cars1;
-//            cars[1]= cars2;
-//            cars[2]= cars3;
+//            cars.add(cars1);
+//            cars.add(cars2);
+//            cars.add(cars3);
 
 
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  */
 public class WritingToFile {
 
-    public void toTextFile(Car[] cars, Path path) {
+    public void toTextFile(List<Car> cars, Path path) {
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -35,7 +36,7 @@ public class WritingToFile {
         }
     }
 
-    private void createFile(Car[] cars, Path path) throws IOException {
+    private void createFile(List<Car> cars, Path path) throws IOException {
         StringBuilder content = new StringBuilder();
         for (Car car : cars) {
             content.append(car.getPower()).append(",")
@@ -45,7 +46,7 @@ public class WritingToFile {
         Files.write(path, content.toString().getBytes());
     }
 
-    private void appendToFile(Car[] cars, Path path) throws IOException {
+    private void appendToFile(List<Car> cars, Path path) throws IOException {
         StringBuilder content = new StringBuilder();
         for (Car car : cars) {
             content.append(car.getPower()).append(",")

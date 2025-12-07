@@ -3,8 +3,7 @@ package org.example;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class WorkingWithTheUser {
 
@@ -90,7 +89,7 @@ public class WorkingWithTheUser {
     }
 
 
-    public void fillings(Car[] cars, int length){
+    public void fillings(List<Car> cars, int length){
         if(length == 1){
             //Логика для заполнения с файла
         }else if(length == 2){
@@ -166,7 +165,7 @@ public class WorkingWithTheUser {
         return field;
     }
 
-    public void sortObjects(Car[] cars, int field){
+    public void sortObjects(List<Car> cars, int field){
         switch (field){
             case 1:
                 //Сортировка по Мощности
@@ -218,7 +217,7 @@ public class WorkingWithTheUser {
 
     }
 
-    public void recordCars(int record, Car[] cars, Path path){
+    public void recordCars(int record, List<Car> cars, Path path){
         switch (record){
             case 1:
                 //Json
