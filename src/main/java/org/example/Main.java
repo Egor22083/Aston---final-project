@@ -17,7 +17,7 @@ public class Main {
             OutputToTheConsole.sayHello();
 
             scanner.nextLine();
-            OutputToTheConsole.clearConsole();
+
             int choice = workingUser.choosingFillIn(); //Выбор способа заполнения
             int length = workingUser.lengthArray(); // Выбор размера массива
 
