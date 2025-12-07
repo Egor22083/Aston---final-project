@@ -22,10 +22,9 @@ public class WorkingWithTheUser {
         while(flag){
             try {
 
-                System.out.println("Ваш выбор " + choice + "\nХотите оставить или поменять:\n" +
-                        "1. Оставить\n" +
-                        "2. Поменять");
+                OutputToTheConsole.sayChoice(choice);
                 exit = scanner.nextInt();
+
                 if(exit > EXIT_CHOICE || exit < 1){
                     System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                 }else {
@@ -48,12 +47,9 @@ public class WorkingWithTheUser {
         int choice = 0;
         while (flag) {
             try {
-
-                System.out.println("Выберите способ ввода данных\n" +
-                        "1. С файла\n" +
-                        "2. В ручную\n" +
-                        "3. Случайные данные");
+                OutputToTheConsole.choosingFillIn();
                 choice = scanner.nextInt();
+                scanner.nextLine();
                 if(choice > FILL_IN_CHOICE || choice < 1){
                     System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                 }else{

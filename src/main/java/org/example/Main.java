@@ -5,15 +5,19 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         boolean flag = true;
-        System.out.println("Добро пожаловать в нашу программу!\n" +
-                "Программа предназначена для сортировки классов\n" +
-                "Приятного использования!");
         WorkingWithTheUser workingUser = new WorkingWithTheUser();
+        Scanner scanner = new Scanner(System.in);
+
         while(flag){
+            OutputToTheConsole.sayHello();
+
+            scanner.nextLine();
+            OutputToTheConsole.clearConsole();
             int choice = workingUser.choosingFillIn(); //Выбор способа заполнения
             int length = workingUser.lengthArray(); // Выбор размера массива
 
