@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +34,14 @@ public class Main {
 
             Path fullPath = path.resolve(fileName);
             System.out.println(fullPath);
-//
-//
-//            Car cars1 = new Car(3.2, "m1", 2000);
-//            Car cars2 = new Car(4.2, "m2", 2001);
-//            Car cars3 = new Car(5.2, "m3", 2002);
-//            cars.add(cars1);
-//            cars.add(cars2);
-//            cars.add(cars3);
+
+
+            Car cars1 = new Car(3.2, "m1", 2000);
+            Car cars2 = new Car(4.2, "m2", 2001);
+            Car cars3 = new Car(5.2, "m3", 2002);
+            cars.add(cars1);
+            cars.add(cars2);
+            cars.add(cars3);
 
 
 

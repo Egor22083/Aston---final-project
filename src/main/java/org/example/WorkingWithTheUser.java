@@ -1,6 +1,7 @@
 package org.example;
 
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -188,22 +189,29 @@ public class WorkingWithTheUser {
         }
         while (flag){
 
-            System.out.println("Напишите путь, куда сохранить файл");
 
-            path = scanner.nextLine().trim();
-            pathObj = Paths.get(path);
+            try {
 
-            if (path.isEmpty()) {
-                System.out.println("Путь не может быть пустым");
-                continue;
+                System.out.println("Напишите путь, куда сохранить файл");
+
+                path = scanner.nextLine().trim();
+                pathObj = Paths.get(path);
+
+                if (path.isEmpty()) {
+                    System.out.println("Путь не может быть пустым");
+                    continue;
+                }
+                if (!Files.exists(pathObj)) {
+                    System.out.println("Путь не существует: " + path);
+                    System.out.println("Пожалуйста, введите существующий путь.");
+                    continue;
+                }
+
+                flag = false;
+            }catch (InvalidPathException e){
+                System.out.println("Путь введен неправильно! Исправьте.");
+
             }
-            if (!Files.exists(pathObj)) {
-                System.out.println("Путь не существует: " + path);
-                System.out.println("Пожалуйста, введите существующий путь.");
-                continue;
-            }
-
-            flag = false;
 
 
         }
@@ -218,13 +226,16 @@ public class WorkingWithTheUser {
     }
 
     public void recordCars(int record, List<Car> cars, Path path){
+        WritingToFile writingToFile = new WritingToFile();
         switch (record){
             case 1:
                 //Json
+                writingToFile.toJsonFile(cars, path);
+                break;
             case 2:
                 //текстовый файл
-                WritingToFile writingToFile = new WritingToFile();
                 writingToFile.toTextFile(cars, path);
+                break;
         }
 
     }
