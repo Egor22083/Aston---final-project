@@ -12,28 +12,44 @@ public class SpecialQuickSort implements SpecialSort {
     public List<Car> sort(List<Car> cars, int left, int right){
         int l = left;
         int r = right;
-        Car pivot = cars.get((left + right) / 2);
+        int pi = left;
+        Car pivot = null;
+        if (right - left > 1)
+            do {
+                pivot = cars.get(pi++);
+            }while (pivot.getYear() % 2 != 0);
+        if (pivot == null)
+            return cars;
 
         while (l <= r) {
             while (l <= right) {
-                if (cars.get(l).getYear() % 2 == 0) {
-                    if (cars.get(l).getYear() < pivot.getYear()) {
-                        l++;
-                    } else break;
-                }else{
+                int year = cars.get(l).getYear();
+
+                if (year % 2 != 0) {
                     l++;
+                    continue;
+                }
+
+                if (year < pivot.getYear()) {
+                    l++;
+                } else {
+                    break;
                 }
             }
 
             while (r >= left) {
-                if (cars.get(r).getYear() % 2 == 0) {
-                    if (cars.get(r).getYear() > pivot.getYear()) {
-                        r--;
-                    } else break;
-                }else{
+                int year = cars.get(r).getYear();
+
+                if (year % 2 != 0) {
                     r--;
+                    continue;
                 }
 
+                if (year > pivot.getYear()) {
+                    r--;
+                } else {
+                    break;
+                }
             }
 
             if (l <= r) {
@@ -43,14 +59,8 @@ public class SpecialQuickSort implements SpecialSort {
             }
         }
 
-        if (l < right) {
-            sort(cars, l, right);
-
-        }
-        if (r > left) {
-            sort(cars, left, r);
-
-        }
+        if (left < r) sort(cars, left, r);
+        if (l < right) sort(cars, l, right);
 
         return cars;
     }
