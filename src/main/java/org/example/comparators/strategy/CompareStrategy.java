@@ -1,9 +1,7 @@
 package org.example.comparators.strategy;
 
-import org.example.comparators.strategy.handlers.ByModelHandler;
-import org.example.comparators.strategy.handlers.ByPowerHandler;
-import org.example.comparators.strategy.handlers.ByYearHandler;
-import org.example.comparators.strategy.handlers.CompareHandler;
+import org.example.comparators.SpecialCompare;
+import org.example.comparators.strategy.handlers.*;
 import org.example.domain.Car;
 
 import java.util.Comparator;
@@ -22,6 +20,7 @@ public class CompareStrategy {
         handlerMap.put(Comparisons.BY_MODEL, new ByModelHandler());
         handlerMap.put(Comparisons.BY_POWER, new ByPowerHandler());
         handlerMap.put(Comparisons.BY_YEAR, new ByYearHandler());
+        handlerMap.put(Comparisons.STANDARD, new NullHandler());
     }
 
     public Comparator<Car> get(Comparisons comparison){
