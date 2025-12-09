@@ -12,6 +12,9 @@ public class Car {
         this.model = model;
         this.year = year;
     }
+    public Car() {
+
+    }
 
     public double getPower() {
         return power;

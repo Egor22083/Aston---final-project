@@ -17,34 +17,49 @@ public class ManualFill implements FillStrategy {
         cars = cars
                 .stream()
                 .map(
-                        (s) ->
-                        {
+                        (s) -> {
                             double power = 0;
                             String model = "";
                             int year = 0;
 
-                            System.out.println("Введите мощность:");
-                            try {
-                                power = scanner.nextDouble();
-                            } catch (InputMismatchException e) {
-                                System.out.println("Некорректный ввод, в значение мощности присвоен 0!");
-                            }
-                            scanner.nextLine();
+                            boolean flagP = true;
+                            boolean flagM = true;
+                            boolean flagY = true;
 
-                            System.out.println("Введите модель:");
-                            try {
-                                model = scanner.nextLine();
-                            } catch (InputMismatchException e) {
-                                System.out.println("Некорректный ввод, в значение модели присвоена пустая строка!");
+                            while (flagP) {
+                                System.out.println("Введите мощность:");
+                                try {
+                                    power = scanner.nextDouble();
+                                    flagP = false;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Некорректный ввод!");
+                                }
+                                scanner.nextLine();
                             }
 
-                            System.out.println("Введите год:");
-                            try {
-                                year = scanner.nextInt();
-                            } catch (InputMismatchException e) {
-                                System.out.println("Некорректный ввод, в значение года присвоен 0!");
+                            while (flagM) {
+                                System.out.println("Введите модель:");
+                                try {
+                                    model = scanner.nextLine();
+                                    if (model.isEmpty()) {
+                                        System.out.println("Некорректный ввод, в значение модели присвоена пустая строка!");
+                                    } else {
+                                        flagM = false;
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Некорректный ввод!");
+                                }
                             }
-                            scanner.nextLine();
+                            while (flagY) {
+                                System.out.println("Введите год:");
+                                try {
+                                    year = scanner.nextInt();
+                                    flagY = false;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Некорректный ввод!");
+                                }
+                                scanner.nextLine();
+                            }
 
                             return new Car(power, model, year);
                         })

@@ -21,8 +21,7 @@ public class RandomFill implements FillStrategy {
         cars = cars
                 .stream()
                 .map(
-                        (s) ->
-                        {
+                        (s) -> {
                             double randomPower = Math.random() * (MAX_POWER - MIN_POWER) + MIN_POWER;
                             int randomYear = new Random().nextInt(MAX_YEAR - MIN_YEAR + 1) + MIN_YEAR;
                             String randomModel = RandModels

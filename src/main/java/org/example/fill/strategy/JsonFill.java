@@ -1,28 +1,24 @@
 package org.example.fill.strategy;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.Car;
 import org.example.fill.FillOption;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FileFill implements FillStrategy {
-    static final FillOption fillOption = FillOption.FILE;
+public class JsonFill implements FillStrategy {
+    private static final FillOption fillOption = FillOption.JSON;
 
     @Override
     public List<Car> fill(List<Car> cars) {
         int size = cars.size();
         try {
-            cars = Files
-                    .lines(Paths.get("test.txt"))
-                    .map(line -> line.split(","))
-                    .map(parts -> new Car(
-                            Double.parseDouble(parts[0].trim()),
-                            parts[1].trim(),
-                            Integer.parseInt(parts[2].trim())
-                    ))
+            cars = new ObjectMapper()
+                    .readValue(new File("test.json"), new TypeReference<List<Car>>() {})
+                    .stream()
                     .limit(size)
                     .collect(Collectors.toList());
         } catch (Exception e) {

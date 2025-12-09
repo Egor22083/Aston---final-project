@@ -1,22 +1,22 @@
 package org.example.fill;
 
-import org.example.Car;
-import org.example.fill.strategy.FillStrategy;
+import org.example.fill.strategy.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FillHandler {
-    private FillStrategy fillStrategy;
+    Map<FillOption, FillStrategy> fillMap;
 
-    public FillHandler(FillStrategy fillStrategy) {
-        this.fillStrategy = fillStrategy;
+    public FillHandler() {
+        fillMap = new HashMap<>();
+        fillMap.put(FillOption.RANDOM, new RandomFill());
+        fillMap.put(FillOption.MANUAL, new ManualFill());
+        fillMap.put(FillOption.FILE, new FileFill());
+        fillMap.put(FillOption.JSON, new JsonFill());
     }
 
-    public void setFillStrategy(FillStrategy fillStrategy) {
-        this.fillStrategy = fillStrategy;
-    }
-
-    public List<Car> doFill(List<Car> cars) {
-        return fillStrategy.fill(cars);
+    public FillStrategy get(FillOption fillOption) {
+        return fillMap.get(fillOption);
     }
 }
