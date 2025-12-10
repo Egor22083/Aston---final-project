@@ -17,7 +17,7 @@ public class SpecialQuickSort implements SpecialSort {
         if (right - left > 1)
             do {
                 pivot = cars.get(pi++);
-            }while (pivot.getYear() % 2 != 0);
+            }while (pivot.getYear() % 2 != 0 && pi < cars.size());
         if (pivot == null)
             return cars;
 
