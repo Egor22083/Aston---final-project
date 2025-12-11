@@ -2,18 +2,37 @@ package org.example.sortings.special;
 
 import org.example.domain.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpecialBubbleSort implements SpecialSort {
 
     public List<Car> sort(List<Car> cars){
-        for (int i = 0; i < cars.size() - 1; i++) {
-            for (int j = 1; j < cars.size() - i; j++) {
-                if (cars.get(i).getYear() < cars.get(j).getYear()){
-                    if (cars.get(i).getYear() % 2 == 0)
-                        swap(cars, i, j);
-                }
+        List<Car> evens = new ArrayList<>();
+        List<Integer> evenIndexes = new ArrayList<>();
+        for (Car car : cars){
+            if (car.getYear() % 2 == 0){
+                evens.add(car);
+                evenIndexes.add(cars.indexOf(car));
             }
+        }
+
+        for (int i = 0; i < evens.size(); i++) {
+            for (int j = 0; j < evens.size() - 1 - i; j++) {
+                Car c1 = evens.get(j);
+                Car c2 = evens.get(j + 1);
+
+                if (c1.getYear() > c2.getYear())
+                    swap(evens, j, j + 1);
+            }
+        }
+
+        int i = 0;
+        int k = 0;
+        while (i < cars.size()){
+            if (evenIndexes.contains(i)){
+                cars.set(i++, evens.get(k++));
+            } else i++;
         }
 
         return cars;
