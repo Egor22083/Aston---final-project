@@ -37,21 +37,25 @@ public class SpecialMergeSort implements SpecialSort {
         int j = 0;
         int k = 0;
 
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i).getYear() % 2 == 0) {
-                if (left.get(i).getYear() <= right.get(j).getYear()) {
+        while (i < left.size() && j < right.size()){
+            boolean evenL = left.get(i).getYear() % 2 == 0;
+            boolean evenR = right.get(j).getYear() % 2 == 0;
+
+            System.out.println("left "+left.get(i));
+            System.out.println("right "+right.get(j));
+
+            if (evenL && evenR){
+                if (left.get(i).getYear() <= right.get(j).getYear()){
                     cars.set(k++, left.get(i++));
                 } else {
                     cars.set(k++, right.get(j++));
                 }
-            } else {
+            }
+            else {
                 cars.set(k++, left.get(i++));
-                if (right.get(j).getYear() % 2 != 0){
-                    cars.set(k++, right.get(j++));
-                }
+                cars.set(k++, right.get(j++));
             }
         }
-
             while (i < left.size()) {
                 cars.set(k++, left.get(i++));
             }
@@ -62,13 +66,5 @@ public class SpecialMergeSort implements SpecialSort {
 
             return cars;
 
-    }
-
-    private void swap(List<Car> cars, int i, int j){
-        Car temp = cars.get(i);
-        if (temp.getYear() % 2 == 0) {
-            cars.set(i, cars.get(j));
-            cars.set(j, temp);
-        }
     }
 }
