@@ -41,9 +41,6 @@ public class SpecialMergeSort implements SpecialSort {
             boolean evenL = left.get(i).getYear() % 2 == 0;
             boolean evenR = right.get(j).getYear() % 2 == 0;
 
-            System.out.println("left "+left.get(i));
-            System.out.println("right "+right.get(j));
-
             if (evenL && evenR){
                 if (left.get(i).getYear() <= right.get(j).getYear()){
                     cars.set(k++, left.get(i++));
@@ -56,15 +53,15 @@ public class SpecialMergeSort implements SpecialSort {
                 cars.set(k++, right.get(j++));
             }
         }
-            while (i < left.size()) {
-                cars.set(k++, left.get(i++));
-            }
+        while (i < left.size()) {
+            cars.set(k++, left.get(i++));
+        }
 
-            while (j < right.size()) {
-                cars.set(k++, right.get(j++));
-            }
+        while (j < right.size()) {
+            cars.set(k++, right.get(j++));
+        }
 
-            return cars;
+        return cars;
 
     }
 }
