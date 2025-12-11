@@ -1,6 +1,7 @@
-package org.example.sortings;
+package org._jd;
 
 import org.example.domain.Car;
+import org.example.sortings.Sorting;
 
 import java.util.ArrayList;
 import java.util.Comparator;

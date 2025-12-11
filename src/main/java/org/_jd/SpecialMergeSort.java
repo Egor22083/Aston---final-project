@@ -1,9 +1,9 @@
-package org.example.sortings.special;
+package org._jd;
 
 import org.example.domain.Car;
+import org.example.sortings.special.SpecialSort;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class SpecialMergeSort implements SpecialSort {

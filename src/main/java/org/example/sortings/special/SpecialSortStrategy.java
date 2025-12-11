@@ -1,5 +1,6 @@
 package org.example.sortings.special;
 
+import org._jd.SpecialMergeSort;
 import org.example.sortings.Sortings;
 
 import java.util.HashMap;
@@ -16,7 +17,6 @@ public class SpecialSortStrategy {
     private void init(){
         specialSortMap.put(Sortings.BUBBLE, new SpecialBubbleSort());
         specialSortMap.put(Sortings.QUICK, new SpecialQuickSort());
-        specialSortMap.put(Sortings.MERGE, new SpecialMergeSort());
     }
 
     public SpecialSort get(Sortings sortings){
