@@ -1,9 +1,15 @@
 package org.example;
 
+import java.nio.file.Path;
+
 public class OutputToTheConsole {
 
     private static final String RED_BOLD = "\033[1;31m";
     private static final String RESET = "\033[0m";
+    public static final String ORANGE = "\033[38;5;214m";
+    public static final String ORANGE_BOLD = "\033[1;38;5;214m";
+    public static final String GREEN_NEON = "\033[38;5;82m";
+
     public static  void sayHello(){
 
         System.out.println("   ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗");
@@ -183,17 +189,17 @@ public class OutputToTheConsole {
         System.out.println();
         System.out.println();
         System.out.println("---------------------------------------------");
-        System.out.println("╔══════════════════════════╗");
-        System.out.println("║       Хотите выйти       ║");
-        System.out.println("╚══════════════════════════╝");
+        System.out.println("    ╔══════════════════════════╗");
+        System.out.println("    ║       Хотите выйти       ║");
+        System.out.println("    ╚══════════════════════════╝");
         System.out.println();
-        System.out.println("    ┌─────────────────────────────────┐");
-        System.out.println("    │ [1] ████████████████            │");
-        System.out.println("    │     ДА                          │");
-        System.out.println("    ├─────────────────────────────────┤");
-        System.out.println("    │ [2] ████████████████            │");
-        System.out.println("    │     ПРОДОЛЖАЕМ                  │");
-        System.out.println("    └─────────────────────────────────┘");
+        System.out.println(" ┌─────────────────────────────────┐");
+        System.out.println(" │ [1] ████████████████            │");
+        System.out.println(" │     ДА                          │");
+        System.out.println(" ├─────────────────────────────────┤");
+        System.out.println(" │ [2] ████████████████            │");
+        System.out.println(" │     ПРОДОЛЖАЕМ                  │");
+        System.out.println(" └─────────────────────────────────┘");
 
         System.out.print("\t⮞  ");
     }
@@ -234,5 +240,32 @@ public class OutputToTheConsole {
         System.out.println(RED_BOLD + "└──────────────────────────────────────────────────┘" + RESET);
         System.out.println();
     }
+    //WritingToFile
+
+    public static void sayFileExists(Path path){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(ORANGE_BOLD + "┌───────────────────────────────────────────────────────┐");
+        System.out.println(ORANGE_BOLD + "│                 ⚠  ВНИМАНИЕ! ⚠                        │");
+        System.out.println(ORANGE_BOLD + "└───────────────────────────────────────────────────────┘");
+        System.out.println(ORANGE_BOLD + "    Файл \"" + path.getFileName() + "\" уже существует "+ RESET);
+        System.out.println();
+        System.out.print(ORANGE_BOLD +"\tДобавить данные в конец? (да/нет)⮞  "+ RESET);
+    }
+
+    public static void sayDataAdded(){
+        System.out.println();
+        System.out.println(GREEN_NEON + "Данные добавлены"+ RESET);
+    }
+    public static void sayCancelRecording(){
+        System.out.println();
+        System.out.println(RED_BOLD + "Отмена записи"+ RESET);
+    }
+    public static void sayFileWasCreatedSuccessfully(){
+        System.out.println();
+        System.out.println(GREEN_NEON + "Файл успешно создан"+ RESET);
+    }
+
 
 }

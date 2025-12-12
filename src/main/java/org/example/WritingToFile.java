@@ -20,19 +20,24 @@ public class WritingToFile {
 
         try {
             if (Files.exists(path)) {
-                System.out.println("Файл " + path.getFileName() + " уже существует");
-                System.out.print("Добавить данные в конец? (да/нет): ");
+//                System.out.println("Файл " + path.getFileName() + " уже существует");
+//                System.out.print("Добавить данные в конец? (да/нет): ");
+                OutputToTheConsole.sayFileExists(path.getFileName());
                 String answer = scanner.nextLine().trim().toLowerCase();
 
                 if (answer.equals("да") || answer.equals("yes")) {
                     appendToFileText(cars, path);
-                    System.out.println("Данные добавлены");
+//                    System.out.println("Данные добавлены");
+                    OutputToTheConsole.sayDataAdded();
                 } else {
-                    System.out.println("Отмена записи");
+
+//                    System.out.println("Отмена записи");
+                    OutputToTheConsole.sayCancelRecording();
                 }
             } else {
                 createFileText(cars, path);
-                System.out.println("Файл успешно создан");
+//                System.out.println("Файл успешно создан");
+                OutputToTheConsole.sayFileWasCreatedSuccessfully();
             }
         } catch (IOException e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -66,21 +71,29 @@ public class WritingToFile {
 
             try {
                 if (Files.exists(path)) {
-                    System.out.println("Файл " + path.getFileName() + " уже существует");
-                    System.out.print("Добавить данные в конец? (да/нет): ");
+//                    System.out.println("Файл " + path.getFileName() + " уже существует");
+//                    System.out.print("Добавить данные в конец? (да/нет): ");
+                    OutputToTheConsole.sayFileExists(path.getFileName());
+
                     String answer = scanner.nextLine().trim().toLowerCase();
 
                     if (answer.equals("да") || answer.equals("yes")) {
                         appendToFileJson(cars, path);
-                        System.out.println("Данные добавлены");
+//                        System.out.println("Данные добавлены");
+                        OutputToTheConsole.sayDataAdded();
+                        flag = false;
+
                     } else {
-                        System.out.println("Отмена записи");
+//                        System.out.println("Отмена записи");
+                        OutputToTheConsole.sayCancelRecording();
+
                         flag = false;
                     }
                 } else {
                     createFileJson(cars, path);
                     flag = false;
-                    System.out.println("Файл успешно создан");
+//                    System.out.println("Файл успешно создан");
+                    OutputToTheConsole.sayFileWasCreatedSuccessfully();
                 }
             } catch (IOException e) {
                 System.out.println("Ошибка: " + e.getMessage());

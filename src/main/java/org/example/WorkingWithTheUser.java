@@ -224,8 +224,8 @@ public class WorkingWithTheUser {
 
                 flag = false;
             }catch (InvalidPathException e){
-                System.out.println("Путь введен неправильно! Исправьте.");
-
+//                System.out.println("Путь введен неправильно! Исправьте.");
+                OutputToTheConsole.sayPathIsWrong();
             }
 
 
