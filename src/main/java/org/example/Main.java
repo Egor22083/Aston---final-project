@@ -1,7 +1,5 @@
 package org.example;
 
-
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while(flag){
+
             OutputToTheConsole.sayHello();
 
             scanner.nextLine();

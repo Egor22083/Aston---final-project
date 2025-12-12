@@ -26,12 +26,14 @@ public class WorkingWithTheUser {
                 exit = scanner.nextInt();
 
                 if(exit > EXIT_CHOICE || exit < 1){
-                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayNonExistentOption();
                 }else {
                     flag = false;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат данных");
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
 
@@ -51,13 +53,15 @@ public class WorkingWithTheUser {
                 choice = scanner.nextInt();
                 scanner.nextLine();
                 if(choice > FILL_IN_CHOICE || choice < 1){
-                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayNonExistentOption();
                 }else{
 
                     flag = choiceExit(choice) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат данных");
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
 
@@ -70,14 +74,17 @@ public class WorkingWithTheUser {
         boolean flag = true;
         int length = 0;
         while (flag){
-            System.out.println("Теперь введи размер создаваемого массива");
+//            System.out.println("Теперь введи размер создаваемого массива");
+            OutputToTheConsole.sayChoosingArraySize();
             try{
             length = scanner.nextInt();
 
             flag = choiceExit(length) != 1;
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат данных");
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
+
             }
 
         }
@@ -98,25 +105,30 @@ public class WorkingWithTheUser {
 
     }
 
-    public   int recordSelection(){
+    public  int recordSelection(){
         boolean flag = true;
         int record = 0;
         while (flag){
             try {
 
-                System.out.println("Ваш отсортированные данные готовы!\n" +
-                        "В каком виде вы хотите их получить:\n" +
-                        "1. JSON\n" +
-                        "2. Текстовый вид");
+//                System.out.println("Ваш отсортированные данные готовы!\n" +
+//                        "В каком виде вы хотите их получить:\n" +
+//                        "1. JSON\n" +
+//                        "2. Текстовый вид");
+                OutputToTheConsole.sayRecordSelection();
+
                 record = scanner.nextInt();
                 if(record > RECORD_SELECTION_CHOICE || record < 0){
-                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayNonExistentOption();
                 }else {
                     flag = choiceExit(record) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат данных");
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
+
             }
 
 
@@ -126,9 +138,10 @@ public class WorkingWithTheUser {
     }
     public boolean isExit(){
         boolean exit = false;
-        System.out.println("Хотите ли выйти из программы \n" +
-                "1. Да\n" +
-                "2. Нет");
+//        System.out.println("Хотите ли выйти из программы \n" +
+//                "1. Да\n" +
+//                "2. Нет");
+        OutputToTheConsole.sayIsExist();
         if(scanner.nextInt() !=1){
             exit = true;
         }
@@ -142,18 +155,22 @@ public class WorkingWithTheUser {
         while (flag){
             try {
 
-                System.out.println("По какому из полей хотите отсортировать:\n" +
-                        "1. Мощность\n" +
-                        "2. Модель\n" +
-                        "3. Год производства");
+//                System.out.println("По какому из полей хотите отсортировать:\n" +
+//                        "1. Мощность\n" +
+//                        "2. Модель\n" +
+//                        "3. Год производства");
+
+                OutputToTheConsole.sayChoosingFieldsForSorting();
                 field = scanner.nextInt();
                 if(field > FIELDS_FOR_SORTING_CHOICE || field < 0){
-                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayNonExistentOption();
                 }else {
                     flag = choiceExit(field) != 1;
                 }
             }catch (InputMismatchException e){
-                System.out.println("Вы ввели неправильный формат данных");
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
 
@@ -188,18 +205,20 @@ public class WorkingWithTheUser {
 
             try {
 
-                System.out.println("Напишите путь, куда сохранить файл");
-
+//                System.out.println("Напишите путь, куда сохранить файл");
+                OutputToTheConsole.sayChoosingPath();
                 path = scanner.nextLine().trim();
                 pathObj = Paths.get(path);
 
                 if (path.isEmpty()) {
-                    System.out.println("Путь не может быть пустым");
+//                    System.out.println("Путь не может быть пустым");
+                    OutputToTheConsole.sayPathIsEmpty();
                     continue;
                 }
                 if (!Files.exists(pathObj)) {
-                    System.out.println("Путь не существует: " + path);
-                    System.out.println("Пожалуйста, введите существующий путь.");
+//                    System.out.println("Путь не существует");
+//                    System.out.println("Пожалуйста, введите существующий путь");
+                    OutputToTheConsole.sayPathDoesNotExist();
                     continue;
                 }
 
@@ -215,8 +234,8 @@ public class WorkingWithTheUser {
     }
 
     public String choosingFileName(){
-        System.out.println("Введите название файла");
-
+//        System.out.println("Введите название файла");
+        OutputToTheConsole.sayChoosingFileName();
         return scanner.nextLine().trim();
 
     }
