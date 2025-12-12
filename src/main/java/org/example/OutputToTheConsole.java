@@ -267,5 +267,31 @@ public class OutputToTheConsole {
         System.out.println(GREEN_NEON + "Файл успешно создан"+ RESET);
     }
 
+    public static void sayChooseSortingMethod(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║      ВЫБОР АЛГОРИТМА СОРТИРОВКИ        ║");
+        System.out.println("╚════════════════════════════════════════╝");
+        System.out.println();
+        System.out.println("    ┌──────────────────────────────────────────────┐");
+        System.out.println("    │ [1] ████████████████                         │");
+        System.out.println("    │     ОБЫЧНАЯ СОРТИРОВКА ПУЗЫРЬКОМ             │");
+        System.out.println("    ├──────────────────────────────────────────────┤");
+        System.out.println("    │ [2] ████████████████                         │");
+        System.out.println("    │     ОБЫЧНАЯ БЫСТРАЯ СОРТИРОВКА               │");
+        System.out.println("    ├──────────────────────────────────────────────┤");
+        System.out.println("    │ [3] ████████████████                         │");
+        System.out.println("    │     ОСОБАЯ СОРТИРОВКА ПУЗЫРЬКОМ              │");
+        System.out.println("    ├──────────────────────────────────────────────┤");
+        System.out.println("    │ [2] ████████████████                         │");
+        System.out.println("    │     ОСОБАЯ БЫСТРАЯ СОРТИРОВКА                │");
+        System.out.println("    └──────────────────────────────────────────────┘");
+
+        System.out.print("\t⮞  ");
+    }
+
 
 }

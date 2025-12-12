@@ -12,6 +12,7 @@ public class WorkingWithTheUser {
     private static final int FILL_IN_CHOICE = 3;
     private static final int RECORD_SELECTION_CHOICE = 2;
     private static final int FIELDS_FOR_SORTING_CHOICE = 3;
+    private static final int CHOOSE_SORTING_METHOD = 4;
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -181,6 +182,9 @@ public class WorkingWithTheUser {
 
     public void sortObjects(List<Car> cars, int field){
         switch (field){
+            case 0:
+                //Если выбрана особая сортировка
+                break;
             case 1:
                 //Сортировка по Мощности
                 break;
@@ -189,6 +193,8 @@ public class WorkingWithTheUser {
                 break;
             case 3:
                 //Сортировка по Году производства
+                break;
+
         }
     }
 
@@ -254,4 +260,36 @@ public class WorkingWithTheUser {
         }
 
     }
+
+    public int chooseSortingMethod(){
+        boolean flag = true;
+        int method = 0;
+        while (flag){
+            try {
+
+//                System.out.println("Ваш отсортированные данные готовы!\n" +
+//                        "В каком виде вы хотите их получить:\n" +
+//                        "1. JSON\n" +
+//                        "2. Текстовый вид");
+                OutputToTheConsole.sayChooseSortingMethod();
+
+                method = scanner.nextInt();
+                if(method > CHOOSE_SORTING_METHOD || method < 0){
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayNonExistentOption();
+                }else {
+                    flag = choiceExit(method) != 1;
+                }
+            }catch (InputMismatchException e){
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
+                scanner.next();
+
+            }
+
+
+        }
+        return method;
+    }
+
 }

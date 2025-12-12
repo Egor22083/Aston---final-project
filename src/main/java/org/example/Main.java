@@ -10,6 +10,7 @@ public class Main {
         boolean flag = true;
         WorkingWithTheUser workingUser = new WorkingWithTheUser();
         Scanner scanner = new Scanner(System.in);
+        int fieldForSorting = 0;
 
         while(flag){
 
@@ -25,7 +26,11 @@ public class Main {
 
             workingUser.fillings(cars, length);//Здесь происходит магия заполнения
 
-            int fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
+            int sortingMethod = workingUser.chooseSortingMethod();//Выбор метода для сортировки
+            if(sortingMethod == 1 || sortingMethod == 2){
+
+                fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
+            }
 
             workingUser.sortObjects(cars, fieldForSorting);// Здесь происходит магия сортировки
 
@@ -51,6 +56,7 @@ public class Main {
             workingUser.recordCars(record, cars, fullPath);//Запись в файл
 
             flag = workingUser.isExit();//Выйти из программы или нет
+            fieldForSorting = 0;
 
 
 
