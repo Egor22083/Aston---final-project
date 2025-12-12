@@ -1,5 +1,7 @@
-package org.example;
+package org.example.file;
 
+import org.example.Car;
+import org.example.console.OutputToTheConsole;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;

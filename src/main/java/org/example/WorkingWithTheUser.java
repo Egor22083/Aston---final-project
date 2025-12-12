@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.console.OutputToTheConsole;
+import org.example.file.WritingToFile;
+
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -290,6 +293,86 @@ public class WorkingWithTheUser {
 
         }
         return method;
+    }
+
+    public String selectingTheElementCount(){
+        boolean flag = true;
+        String countE = null;
+        while (flag){
+            try {
+
+//                System.out.println("Ваш отсортированные данные готовы!\n" +
+//                        "В каком виде вы хотите их получить:\n" +
+//                        "1. JSON\n" +
+//                        "2. Текстовый вид");
+                OutputToTheConsole.saySelectingTheElementCount();
+                scanner.nextLine();
+
+                countE = scanner.nextLine().trim().toLowerCase();
+                if(countE.equals("yes")
+                        || countE.equals("да")
+                        || countE.equals("no")
+                        || countE.equals("нет") ){
+                    flag = false;
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                }else {
+                    OutputToTheConsole.sayNonExistentOption();
+
+                }
+            }catch (InputMismatchException e){
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
+                scanner.next();
+
+            }
+
+
+        }
+        return countE;
+    }
+
+
+    public int countElement(){
+        boolean flag = true;
+
+        double power = 0.0;
+        String model = "";
+        int year = 0;
+        int count = 0;
+        while (flag){
+            try {
+
+
+                OutputToTheConsole.sayEnterPower();
+                power = scanner.nextDouble();
+                OutputToTheConsole.sayEnterModel();
+                scanner.nextLine();
+                model = scanner.nextLine().trim().toLowerCase();
+                OutputToTheConsole.sayEnterYear();
+                year = scanner.nextInt();
+
+                if(power < -1 || year < 0){
+//                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
+                    OutputToTheConsole.sayLimitations();
+                }else {
+                    flag = false;
+                }
+            }catch (InputMismatchException e){
+//                System.out.println("Вы ввели неправильный формат данных");
+                OutputToTheConsole.sayAboutTheWrongFormat();
+                scanner.next();
+
+            }
+
+
+        }
+
+        //ЗДЕСЬ УЖЕ ВЫЧИСЛЯЕТСЯ
+        //Передаются параметры power,model,year
+        //Вывод в count
+        //
+
+        return count;
     }
 
 }

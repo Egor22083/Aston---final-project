@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.console.OutputToTheConsole;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +12,12 @@ public class Main {
         boolean flag = true;
         WorkingWithTheUser workingUser = new WorkingWithTheUser();
         Scanner scanner = new Scanner(System.in);
-        int fieldForSorting = 0;
+
 
         while(flag){
+            int fieldForSorting = 0;
+            String countElements = null;
+            int count = 0;
 
             OutputToTheConsole.sayHello();
 
@@ -30,6 +35,12 @@ public class Main {
             if(sortingMethod == 1 || sortingMethod == 2){
 
                 fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
+            }
+
+            countElements = workingUser.selectingTheElementCount();//Сделать ли подсчет элементов
+
+            if(countElements.equals("yes")|| countElements.equals("да")){
+                count = workingUser.countElement();//Здесь выбираются поля и идет подсчет
             }
 
             workingUser.sortObjects(cars, fieldForSorting);// Здесь происходит магия сортировки

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.console;
 
 import java.nio.file.Path;
 
@@ -175,8 +175,8 @@ public class OutputToTheConsole {
         System.out.println(RED_BOLD + "┌──────────────────────────────────────────────────┐");
         System.out.println(RED_BOLD + "│                 ⚠  ВНИМАНИЕ! ⚠                   │");
         System.out.println(RED_BOLD + "├──────────────────────────────────────────────────┤");
-        System.out.println(RED_BOLD + "│   Вы ввели вариант, которого нет в системе       │");
-        System.out.println(RED_BOLD + "│   Пожалуйста, выберите из предложенных вариантов │");
+        System.out.println(RED_BOLD + "│   Вы ввели неправильный формат данных            │");
+        System.out.println(RED_BOLD + "│   Пожалуйста, исправьте                          │");
         System.out.println(RED_BOLD + "└──────────────────────────────────────────────────┘" + RESET);
         System.out.println();
     }
@@ -286,11 +286,69 @@ public class OutputToTheConsole {
         System.out.println("    │ [3] ████████████████                         │");
         System.out.println("    │     ОСОБАЯ СОРТИРОВКА ПУЗЫРЬКОМ              │");
         System.out.println("    ├──────────────────────────────────────────────┤");
-        System.out.println("    │ [2] ████████████████                         │");
+        System.out.println("    │ [4] ████████████████                         │");
         System.out.println("    │     ОСОБАЯ БЫСТРАЯ СОРТИРОВКА                │");
         System.out.println("    └──────────────────────────────────────────────┘");
 
         System.out.print("\t⮞  ");
+    }
+
+    public static void saySelectingTheElementCount(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║      ПОДСЧИТАТЬ КОЛИЧЕСТВО ВХОЖДЕНИЙ ОПРЕДЕЛЕННОГО ЭЛЕМЕНТА?       ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
+        System.out.print("\t(да/нет)⮞  ");
+    }
+    public static void sayEnterPower(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔═══════════════════════════╗");
+        System.out.println("║      ВВЕДИТЕ МОЩНОСТЬ     ║");
+        System.out.println("╚═══════════════════════════╝");
+        System.out.println();
+        System.out.print("\t⮞  ");
+    }
+    public static void sayEnterModel(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔═══════════════════════════╗");
+        System.out.println("║      ВВЕДИТЕ МОДЕЛЬ       ║");
+        System.out.println("╚═══════════════════════════╝");
+        System.out.println();
+        System.out.print("\t⮞  ");
+    }
+    public static void sayEnterYear(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔═══════════════════════════╗");
+        System.out.println("║      ВВЕДИТЕ ГОД          ║");
+        System.out.println("╚═══════════════════════════╝");
+        System.out.println();
+        System.out.print("\t⮞  ");
+    }
+
+    public static void sayLimitations(){
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(RED_BOLD + "┌──────────────────────────────────────────────────┐");
+            System.out.println(RED_BOLD + "│                 ⚠  ВНИМАНИЕ! ⚠                   │");
+            System.out.println(RED_BOLD + "├──────────────────────────────────────────────────┤");
+            System.out.println(RED_BOLD + "│   значения не могут быть меньше 0!               │");
+            System.out.println(RED_BOLD + "└──────────────────────────────────────────────────┘" + RESET);
+            System.out.println();
+
     }
 
 
