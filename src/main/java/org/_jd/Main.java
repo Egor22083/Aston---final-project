@@ -1,9 +1,9 @@
 package org._jd;
 
-import org.example.builder.CarBuilder;
-import org.example.comparators.strategy.CompareStrategy;
-import org.example.comparators.strategy.Comparisons;
+import org.example.domain.CarBuilder;
 import org.example.domain.Car;
+import org.example.sortings.SortingStrategy;
+import org.example.sortings.special.SpecialBubbleSort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +14,28 @@ public class Main {
 
         List<Car> cars = new ArrayList<>();
 
-        cars.add(new Car(1.1, "Иванова", 13));
-        cars.add(new Car(1.0, "Иванькова", 16));
-        cars.add(new Car(3.0, "Ivanova", 11));
-        cars.add(new Car(6.2, "Иванов", 10));
-        cars.add(new Car(4.0, "Иваньковоа", 12));
-        cars.add(new Car(1.5, "Жук", 15));
-        cars.add(new Car(2.0, "Як", 14));
+        cars.add(CarBuilder.name("1").year(13).power(100.0).build());
+        cars.add(CarBuilder.name("2").year(10).power(99.9).build());
 
-        cars.stream().sorted(new CompareStrategy().get(Comparisons.BY_MODEL)).forEach(System.out::println);
+        cars.add(CarBuilder.name("3").year(15).power(13.1).build());
+        cars.add(CarBuilder.name("4").year(8).power(18.6).build());
 
 
-        Car car = CarBuilder.name("Model").power(16.8).year(2004).build();
+        cars.add(CarBuilder.name("5").year(11).power(18.5).build());
+        cars.add(CarBuilder.name("5").year(4).power(18.5).build());
+
+        cars.add(CarBuilder.name("5").year(5).power(18.5).build());
+        cars.add(CarBuilder.name("5").year(6).power(18.5).build());
+
+        SortingStrategy sortingStrategy = new SortingStrategy();
+
+//        sortingStrategy.get(Sortings.MERGE, Comparisons.BY_YEAR).sort(cars).stream().forEach(System.out::println);
+        System.out.println("============");
+
+        new SpecialBubbleSort().sort(cars).stream().forEach(System.out::println);
+        System.out.println("============");
+//        new SpecialMergeSort().sort(cars).stream().forEach(System.out::println);
+        System.out.println("============");
+//        new SpecialQuickSort().sort(cars).stream().forEach(System.out::println);
     }
 }
