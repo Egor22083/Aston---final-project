@@ -18,8 +18,8 @@ public class Main {
         FillStrategy fillStrategy;
         //fillStrategy = fillHandler.get(FillOption.JSON);
         //fillStrategy = fillHandler.get(FillOption.FILE);
-        //fillStrategy = fillHandler.get(FillOption.RANDOM);
-        fillStrategy = fillHandler.get(FillOption.MANUAL);
+        fillStrategy = fillHandler.get(FillOption.RANDOM);
+        //fillStrategy = fillHandler.get(FillOption.MANUAL);
 
         cars = fillStrategy.fill(cars);
 

@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.util.Objects;
+
 ////////////////////Неправильный Car!
 public class Car {
     private double power;
@@ -43,5 +45,13 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", year=" + year +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Double.compare(power, car.power) == 0 && year == car.year && Objects.equals(model, car.model);
     }
 }
