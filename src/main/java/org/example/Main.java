@@ -20,6 +20,8 @@ public class Main {
         cars.add(CarBuilder.name("4").year(8).power(18.6).build());
         cars.add(CarBuilder.name("5").year(11).power(18.5).build());
 
-        new SpecialSortStrategy().get(Sortings.QUICK).sort(cars).stream().forEach(System.out::println);
+        System.out.println("=====");
+        new SpecialSortStrategy().get(Sortings.QUICK).sort(cars)
+                .stream().forEach(System.out::println);
     }
 }
