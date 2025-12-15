@@ -1,10 +1,10 @@
 package org.example;
 
-
-import java.util.Objects;
-
-////////////////////Неправильный Car!
+/**
+ * Класс-заглушка, чтобы не поломалась логика в Main
+ */
 public class Car {
+
     private double power;
     private String model;
     private int year;
