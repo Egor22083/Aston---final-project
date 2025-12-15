@@ -1,11 +1,11 @@
-package org.example.sortings;
+package org.example.sortings.sorting;
 
 import org.example.domain.Car;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class BubbleSort implements Sorting{
+public class BubbleSort implements Sorting {
 
     private Comparator<Car> comparator;
 

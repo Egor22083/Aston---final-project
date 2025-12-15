@@ -1,6 +1,8 @@
 package org.example.fill.strategy;
 
-import org.example.Car;
+
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.FillOption;
 
 import java.util.InputMismatchException;
@@ -60,8 +62,7 @@ public class ManualFill implements FillStrategy {
                                 }
                                 scanner.nextLine();
                             }
-
-                            return new Car(power, model, year);
+                            return CarBuilder.name(model).year(year).power(power).build();
                         })
                 .collect(Collectors.toList());
         scanner.close();

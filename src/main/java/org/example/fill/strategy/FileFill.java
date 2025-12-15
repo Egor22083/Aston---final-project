@@ -1,6 +1,8 @@
 package org.example.fill.strategy;
 
-import org.example.Car;
+
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.FillOption;
 
 import java.nio.file.Files;
@@ -13,16 +15,18 @@ public class FileFill implements FillStrategy {
 
     @Override
     public List<Car> fill(List<Car> cars) {
+
         int size = cars.size();
         try {
             cars = Files
                     .lines(Paths.get("test.txt"))
                     .map(line -> line.split(","))
-                    .map(parts -> new Car(
-                            Double.parseDouble(parts[0].trim()),
-                            parts[1].trim(),
-                            Integer.parseInt(parts[2].trim())
-                    ))
+                    .map(parts -> CarBuilder
+                            .name(parts[1].trim())
+                            .year(Integer.parseInt(parts[2].trim()))
+                            .power(Double.parseDouble(parts[0].trim()))
+                            .build()
+                    )
                     .limit(size)
                     .collect(Collectors.toList());
         } catch (Exception e) {

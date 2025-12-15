@@ -1,7 +1,7 @@
-package org.example;
+package org.example.fill;
 
-import org.example.fill.FillHandler;
-import org.example.fill.FillOption;
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.strategy.FillStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,9 +22,10 @@ public class FileFillTest {
         actualCars = fillStrategy.fill(actualCars);
 
         List<Car> expectedCars = new ArrayList<>();
-        expectedCars.add(new Car(341.819, "Ford", 1935));
-        expectedCars.add(new Car(920.763, "BMW", 1901));
-        expectedCars.add(new Car(728.86, "BMW", 1909));
+
+        expectedCars.add(CarBuilder.name("Ford").year(1935).power(341.819).build());
+        expectedCars.add(CarBuilder.name("BMW").year(1901).power(920.763).build());
+        expectedCars.add(CarBuilder.name("BMW").year(1909).power(728.86).build());
 
         Assertions.assertEquals(actualCars, expectedCars);
     }
@@ -37,8 +38,8 @@ public class FileFillTest {
         actualCars = fillStrategy.fill(actualCars);
 
         List<Car> expectedCars = new ArrayList<>();
-        expectedCars.add(new Car(341.819, "Ford", 1935));
-        expectedCars.add(new Car(920.763, "BMW", 1901));
+        expectedCars.add(CarBuilder.name("Ford").year(1935).power(341.819).build());
+        expectedCars.add(CarBuilder.name("BMW").year(1901).power(920.763).build());
 
         Assertions.assertEquals(actualCars, expectedCars);
     }

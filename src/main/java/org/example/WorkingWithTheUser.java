@@ -1,7 +1,18 @@
 package org.example;
 
+import org.example.comparators.strategy.Comparisons;
 import org.example.console.OutputToTheConsole;
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.file.WritingToFile;
+import org.example.fill.FillHandler;
+import org.example.fill.FillOption;
+import org.example.fill.strategy.FillStrategy;
+import org.example.sorting.special.SpecialSort;
+import org.example.sorting.special.SpecialSortStrategy;
+import org.example.sortings.sorting.Sorting;
+import org.example.sortings.sorting.SortingStrategy;
+import org.example.sortings.sorting.Sortings;
 
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -10,7 +21,6 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class WorkingWithTheUser {
-
     private static final int EXIT_CHOICE = 2;
     private static final int FILL_IN_CHOICE = 3;
     private static final int RECORD_SELECTION_CHOICE = 2;
@@ -19,36 +29,30 @@ public class WorkingWithTheUser {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-
-    private int choiceExit(int choice){
+    private int choiceExit(int choice) {
         boolean flag = true;
         int exit = 0;
-        while(flag){
+        while(flag) {
             try {
-
                 OutputToTheConsole.sayChoice(choice);
                 exit = scanner.nextInt();
 
-                if(exit > EXIT_CHOICE || exit < 1){
+                if(exit > EXIT_CHOICE || exit < 1) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayNonExistentOption();
                 }else {
                     flag = false;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
-
         }
         return exit;
-
-
     }
 
-    public int choosingFillIn(){
-
+    public int choosingFillIn() {
         boolean flag = true;
         int choice = 0;
         while (flag) {
@@ -56,35 +60,32 @@ public class WorkingWithTheUser {
                 OutputToTheConsole.choosingFillIn();
                 choice = scanner.nextInt();
                 scanner.nextLine();
-                if(choice > FILL_IN_CHOICE || choice < 1){
+                if(choice > FILL_IN_CHOICE || choice < 1) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayNonExistentOption();
-                }else{
+                } else {
 
                     flag = choiceExit(choice) != 1;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e){
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
-
-
-
         }
         return choice;
     }
-    public int lengthArray(){
+    public int lengthArray() {
         boolean flag = true;
         int length = 0;
-        while (flag){
+        while (flag) {
 //            System.out.println("Теперь введи размер создаваемого массива");
             OutputToTheConsole.sayChoosingArraySize();
-            try{
+            try {
             length = scanner.nextInt();
 
             flag = choiceExit(length) != 1;
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
@@ -93,28 +94,34 @@ public class WorkingWithTheUser {
 
         }
         return length;
-
     }
 
+    public List<Car> fillings(List<Car> cars, int choice) {
+        FillHandler fillHandler = new FillHandler();
+        FillStrategy fillStrategy = null;
 
-    public void fillings(List<Car> cars, int length){
-        if(length == 1){
+        if(choice == 1){
             //Логика для заполнения с файла
-        }else if(length == 2){
+            fillStrategy = fillHandler.get(FillOption.FILE);
+        } else if(choice == 2){
             //Логика для заполнения в ручную
-
-        }else if(length == 3){
+            fillStrategy = fillHandler.get(FillOption.MANUAL);
+        } else if(choice == 3){
             //Логика для заполнения рандомными данными
+            fillStrategy = fillHandler.get(FillOption.RANDOM);
+        } else if(choice == 4){
+            //Логика для заполнения через Json
+            fillStrategy = fillHandler.get(FillOption.JSON);
         }
-
+        cars = fillStrategy.fill(cars);
+        return cars;
     }
 
-    public  int recordSelection(){
+    public  int recordSelection() {
         boolean flag = true;
         int record = 0;
-        while (flag){
+        while (flag) {
             try {
-
 //                System.out.println("Ваш отсортированные данные готовы!\n" +
 //                        "В каком виде вы хотите их получить:\n" +
 //                        "1. JSON\n" +
@@ -122,41 +129,37 @@ public class WorkingWithTheUser {
                 OutputToTheConsole.sayRecordSelection();
 
                 record = scanner.nextInt();
-                if(record > RECORD_SELECTION_CHOICE || record < 0){
+                if(record > RECORD_SELECTION_CHOICE || record < 0) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayNonExistentOption();
-                }else {
+                } else {
                     flag = choiceExit(record) != 1;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e){
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
-
             }
-
-
         }
         return record;
-
     }
-    public boolean isExit(){
+
+    public boolean isExit() {
         boolean exit = false;
 //        System.out.println("Хотите ли выйти из программы \n" +
 //                "1. Да\n" +
 //                "2. Нет");
         OutputToTheConsole.sayIsExist();
-        if(scanner.nextInt() !=1){
+        if(scanner.nextInt() !=1) {
             exit = true;
         }
         return exit;
     }
 
-
-    public int selectingFieldsForSorting(){
+    public int selectingFieldsForSorting() {
         boolean flag = true;
         int field = 0;
-        while (flag){
+        while (flag) {
             try {
 
 //                System.out.println("По какому из полей хотите отсортировать:\n" +
@@ -166,54 +169,68 @@ public class WorkingWithTheUser {
 
                 OutputToTheConsole.sayChoosingFieldsForSorting();
                 field = scanner.nextInt();
-                if(field > FIELDS_FOR_SORTING_CHOICE || field < 0){
+                if(field > FIELDS_FOR_SORTING_CHOICE || field < 0) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayNonExistentOption();
-                }else {
+                } else {
                     flag = choiceExit(field) != 1;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
             }
-
-
         }
         return field;
     }
 
-    public void sortObjects(List<Car> cars, int field){
-        switch (field){
-            case 0:
-                //Если выбрана особая сортировка
-                break;
+    public List<Car> sortObjects(List<Car> cars, int field, int method) {
+        Comparisons comparisons = null;
+        Sortings sortings;
+        switch (field) {
             case 1:
-                //Сортировка по Мощности
+                comparisons = Comparisons.BY_POWER;
                 break;
             case 2:
-                //Сортировка по Модели
+                comparisons = Comparisons.BY_MODEL;
                 break;
             case 3:
-                //Сортировка по Году производства
+                comparisons = Comparisons.BY_YEAR;
                 break;
+            case 4:
+                comparisons = Comparisons.STANDARD;
+                break;
+        }
 
+        if (method % 2 == 1) {
+            sortings = Sortings.BUBBLE;
+        } else {
+            sortings = Sortings.QUICK;
+        }
+        if (method < 3) {
+            SortingStrategy sortingStrategy = new SortingStrategy();
+            Sorting sorting;
+
+            sorting = sortingStrategy.get(sortings, comparisons);
+            return sorting.sort(cars);
+        } else {
+            SpecialSortStrategy specialSortStrategy = new SpecialSortStrategy();
+            SpecialSort specialSort;
+
+            specialSort = specialSortStrategy.get(sortings);
+            return specialSort.sort(cars);
         }
     }
 
-
-    public Path choosingPath(){
+    public Path choosingPath() {
         boolean flag = true;
         String path = null;
         Path pathObj = null;
         if (scanner.hasNextLine()) {
             scanner.nextLine();
         }
-        while (flag){
-
-
+        while (flag) {
             try {
-
 //                System.out.println("Напишите путь, куда сохранить файл");
                 OutputToTheConsole.sayChoosingPath();
                 path = scanner.nextLine().trim();
@@ -232,26 +249,23 @@ public class WorkingWithTheUser {
                 }
 
                 flag = false;
-            }catch (InvalidPathException e){
+            } catch (InvalidPathException e){
 //                System.out.println("Путь введен неправильно! Исправьте.");
                 OutputToTheConsole.sayPathIsWrong();
             }
-
-
         }
         return pathObj;
     }
 
-    public String choosingFileName(){
+    public String choosingFileName() {
 //        System.out.println("Введите название файла");
         OutputToTheConsole.sayChoosingFileName();
         return scanner.nextLine().trim();
-
     }
 
-    public void recordCars(int record, List<Car> cars, Path path){
+    public void recordCars(int record, List<Car> cars, Path path) {
         WritingToFile writingToFile = new WritingToFile();
-        switch (record){
+        switch (record) {
             case 1:
                 //Json
                 writingToFile.toJsonFile(cars, path);
@@ -261,13 +275,12 @@ public class WorkingWithTheUser {
                 writingToFile.toTextFile(cars, path);
                 break;
         }
-
     }
 
-    public int chooseSortingMethod(){
+    public int chooseSortingMethod() {
         boolean flag = true;
         int method = 0;
-        while (flag){
+        while (flag) {
             try {
 
 //                System.out.println("Ваш отсортированные данные готовы!\n" +
@@ -277,30 +290,27 @@ public class WorkingWithTheUser {
                 OutputToTheConsole.sayChooseSortingMethod();
 
                 method = scanner.nextInt();
-                if(method > CHOOSE_SORTING_METHOD || method < 0){
+                if(method > CHOOSE_SORTING_METHOD || method < 0) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayNonExistentOption();
-                }else {
+                } else {
                     flag = choiceExit(method) != 1;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e){
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
 
             }
-
-
         }
         return method;
     }
 
-    public String selectingTheElementCount(){
+    public String selectingTheElementCount() {
         boolean flag = true;
         String countE = null;
-        while (flag){
+        while (flag) {
             try {
-
 //                System.out.println("Ваш отсортированные данные готовы!\n" +
 //                        "В каком виде вы хотите их получить:\n" +
 //                        "1. JSON\n" +
@@ -312,37 +322,31 @@ public class WorkingWithTheUser {
                 if(countE.equals("yes")
                         || countE.equals("да")
                         || countE.equals("no")
-                        || countE.equals("нет") ){
+                        || countE.equals("нет") ) {
                     flag = false;
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
-                }else {
+                } else {
                     OutputToTheConsole.sayNonExistentOption();
-
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e){
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
 
             }
-
-
         }
         return countE;
     }
 
-
-    public int countElement(){
+    public int countElement(List<Car> cars) {
         boolean flag = true;
 
         double power = 0.0;
         String model = "";
         int year = 0;
         int count = 0;
-        while (flag){
+        while (flag) {
             try {
-
-
                 OutputToTheConsole.sayEnterPower();
                 power = scanner.nextDouble();
                 OutputToTheConsole.sayEnterModel();
@@ -351,28 +355,25 @@ public class WorkingWithTheUser {
                 OutputToTheConsole.sayEnterYear();
                 year = scanner.nextInt();
 
-                if(power < -1 || year < 0){
+                if(power < -1 || year < 0) {
 //                    System.out.println("Вы ввели вариант, которого нет\nПожалуйста, выберите из предложенных\n ");
                     OutputToTheConsole.sayLimitations();
-                }else {
+                } else {
                     flag = false;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e){
 //                System.out.println("Вы ввели неправильный формат данных");
                 OutputToTheConsole.sayAboutTheWrongFormat();
                 scanner.next();
-
             }
-
-
         }
 
         //ЗДЕСЬ УЖЕ ВЫЧИСЛЯЕТСЯ
-        //Передаются параметры power,model,year
-        //Вывод в count
-        //
+        Car car = CarBuilder.name(model).year(year).power(power).build();
+        count = ElementCounter.countOccurrencesSimple(cars, car);
+
+        OutputToTheConsole.sayResultTheElementCount(count);
 
         return count;
     }
-
 }

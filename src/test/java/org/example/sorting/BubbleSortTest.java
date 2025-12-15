@@ -1,8 +1,10 @@
-package org.example.sortings;
+package org.example.sorting;
 
 import org.example.comparators.strategy.Comparisons;
 import org.example.domain.Car;
 import org.example.domain.CarBuilder;
+import org.example.sortings.sorting.SortingStrategy;
+import org.example.sortings.sorting.Sortings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuickSortTest {
-
+public class BubbleSortTest {
     private final SortingStrategy strategy = new SortingStrategy();
 
     private List<Car> cars;
@@ -27,19 +28,18 @@ public class QuickSortTest {
         cars.add(CarBuilder.name("5").year(11).power(18.5).build());
     }
 
-    @DisplayName("Is first model 4 in quick sort")
+
+    @DisplayName("Is first model 4 in bubble sort")
     @Test
     public void testFirst(){
-        List<Car> sorted = strategy.get(Sortings.QUICK, Comparisons.BY_YEAR).sort(cars);
-
+        List<Car> sorted = strategy.get(Sortings.BUBBLE, Comparisons.BY_YEAR).sort(cars);
         Assertions.assertEquals("4", sorted.get(0).getModel());
     }
 
-    @DisplayName("Is last model 3 in quick sort")
+    @DisplayName("Is last model 3 in bubble sort")
     @Test
     public void testLast(){
-        List<Car> sorted = strategy.get(Sortings.QUICK, Comparisons.BY_YEAR).sort(cars);
-
+        List<Car> sorted = strategy.get(Sortings.BUBBLE, Comparisons.BY_YEAR).sort(cars);
         Assertions.assertEquals("3", sorted.get(sorted.size() - 1).getModel());
     }
 }

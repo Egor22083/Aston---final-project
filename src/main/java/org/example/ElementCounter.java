@@ -1,12 +1,13 @@
 package org.example;
 
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ElementCounter {
-
-
-    public static <T> int countOccurrencesSimple(List<T> list, T target) {
+    public static int countOccurrencesSimple(List<Car> list, Car target) {
         if (list == null || list.isEmpty() || target == null) {
             System.out.println("Количество вхождений: 0");
             return 0;

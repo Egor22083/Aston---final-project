@@ -1,8 +1,8 @@
-package org.example.sortings.special;
+package org.example.sorting.special;
 
 import org.example.domain.Car;
 import org.example.domain.CarBuilder;
-import org.example.sortings.Sortings;
+import org.example.sortings.sorting.Sortings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialQuickSortTest {
+public class SpecialBubbleSortTest {
     private final SpecialSortStrategy strategy = new SpecialSortStrategy();
 
     private List<Car> cars;
@@ -26,25 +26,27 @@ public class SpecialQuickSortTest {
         cars.add(CarBuilder.name("5").year(11).power(18.5).build());
     }
 
-    @DisplayName("Is 1st model 1 in special quick")
+
+    @DisplayName("Is first model 1 in special bubble")
     @Test
     public void testFirst(){
-        List<Car> sorted = strategy.get(Sortings.QUICK).sort(cars);
+        List<Car> sorted = strategy.get(Sortings.BUBBLE).sort(cars);
 
         Assertions.assertEquals("1", sorted.get(0).getModel());
     }
 
-    @DisplayName("Is 2nd model 4 in special quick")
+    @DisplayName("Is second model 4 in special bubble")
     @Test
     public void testSecond(){
-        List<Car> sorted = strategy.get(Sortings.QUICK).sort(cars);
+        List<Car> sorted = strategy.get(Sortings.BUBBLE).sort(cars);
         Assertions.assertEquals("4", sorted.get(1).getModel());
     }
 
-    @DisplayName("Is 4nd model 2 in special quick")
+    @DisplayName("Is 4nd model 2 in special bubble")
     @Test
     public void testThird(){
-        List<Car> sorted = strategy.get(Sortings.QUICK).sort(cars);
+        List<Car> sorted = strategy.get(Sortings.BUBBLE).sort(cars);
         Assertions.assertEquals("2", sorted.get(3).getModel());
     }
+
 }

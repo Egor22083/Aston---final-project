@@ -1,4 +1,4 @@
-package org.example.sortings.special;
+package org.example.sorting.special;
 
 import org.example.domain.Car;
 

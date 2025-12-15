@@ -1,9 +1,11 @@
 package org.example;
 
 import org.example.console.OutputToTheConsole;
+import org.example.domain.Car;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,9 +29,9 @@ public class Main {
             int length = workingUser.lengthArray(); // Выбор размера массива
 
 
-            List<Car> cars = new ArrayList<>();
+            List<Car> cars = new ArrayList<>(Collections.nCopies(length, null));
 
-            workingUser.fillings(cars, length);//Здесь происходит магия заполнения
+            cars = workingUser.fillings(cars, choice);//Здесь происходит магия заполнения
 
             int sortingMethod = workingUser.chooseSortingMethod();//Выбор метода для сортировки
             if(sortingMethod == 1 || sortingMethod == 2){
@@ -40,10 +42,10 @@ public class Main {
             countElements = workingUser.selectingTheElementCount();//Сделать ли подсчет элементов
 
             if(countElements.equals("yes")|| countElements.equals("да")){
-                count = workingUser.countElement();//Здесь выбираются поля и идет подсчет
+                count = workingUser.countElement(cars);//Здесь выбираются поля и идет подсчет
             }
 
-            workingUser.sortObjects(cars, fieldForSorting);// Здесь происходит магия сортировки
+            cars = workingUser.sortObjects(cars, fieldForSorting, sortingMethod);// Здесь происходит магия сортировки
 
             int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
@@ -53,16 +55,6 @@ public class Main {
 
             Path fullPath = path.resolve(fileName);
             System.out.println(fullPath);
-
-
-            Car cars1 = new Car(3.2, "m1", 2000);
-            Car cars2 = new Car(4.2, "m2", 2001);
-            Car cars3 = new Car(5.2, "m3", 2002);
-            cars.add(cars1);
-            cars.add(cars2);
-            cars.add(cars3);
-
-
 
             workingUser.recordCars(record, cars, fullPath);//Запись в файл
 

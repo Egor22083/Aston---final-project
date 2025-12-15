@@ -1,4 +1,4 @@
-package org.example.sortings;
+package org.example.sortings.sorting;
 
 import org.example.comparators.strategy.CompareStrategy;
 import org.example.comparators.strategy.Comparisons;
@@ -19,7 +19,6 @@ public class SortingStrategy {
     private void init(){
         sortingMap.put(Sortings.BUBBLE, new BubbleSort());
         sortingMap.put(Sortings.QUICK, new QuickSort());
-        sortingMap.put(Sortings.MERGE, new MergeSort());
     }
 
     public Sorting get(Sortings sortings, Comparisons comparisons){

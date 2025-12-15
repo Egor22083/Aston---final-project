@@ -1,6 +1,6 @@
 package org.example.fill.strategy;
 
-import org.example.Car;
+import org.example.domain.Car;
 
 import java.util.List;
 

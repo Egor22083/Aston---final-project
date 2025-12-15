@@ -2,7 +2,8 @@ package org.example.fill.strategy;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.Car;
+
+import org.example.domain.Car;
 import org.example.fill.FillOption;
 
 import java.io.File;

@@ -55,8 +55,13 @@ public class OutputToTheConsole {
         System.out.println("    ├─────────────────────────────────┤");
         System.out.println("    │ [3] ████████████████            │");
         System.out.println("    │     СЛУЧАЙНЫЕ ДАННЫЕ            │");
+        System.out.println("    ├─────────────────────────────────┤");
+        System.out.println("    │ [4] ████████████████            │");
+        System.out.println("    │     С JSON                      │");
         System.out.println("    └─────────────────────────────────┘");
         System.out.print("\t⮞  ");
+
+
     }
 
     public static void sayChoosingArraySize(){
@@ -96,6 +101,9 @@ public class OutputToTheConsole {
         System.out.println("    ├─────────────────────────────────┤");
         System.out.println("    │ [3] ████████████████            │");
         System.out.println("    │     ГОД ПРОИЗВОДСТВА            │");
+        System.out.println("    ├─────────────────────────────────┤");
+        System.out.println("    │ [4] ████████████████            │");
+        System.out.println("    │     ПО ВСЕМ ПОЛЯМ               │");
         System.out.println("    └─────────────────────────────────┘");
         System.out.print("\t⮞  ");
 
@@ -336,6 +344,17 @@ public class OutputToTheConsole {
         System.out.println("╚═══════════════════════════╝");
         System.out.println();
         System.out.print("\t⮞  ");
+    }
+    public static void sayResultTheElementCount(int count){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("---------------------------------------------");
+        System.out.println("╔════════════════════════════════════════════════════════════════════╗");
+        System.out.println("       Выбранный элемент встетился в коллекции " + count + " раз      ");
+        System.out.println("╚════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
+        System.out.print("\t(да/нет)⮞  ");
     }
 
     public static void sayLimitations(){

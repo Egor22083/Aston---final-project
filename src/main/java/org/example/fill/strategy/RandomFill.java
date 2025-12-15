@@ -1,6 +1,8 @@
 package org.example.fill.strategy;
 
-import org.example.Car;
+
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.FillOption;
 import org.example.fill.rand.RandModels;
 
@@ -28,7 +30,7 @@ public class RandomFill implements FillStrategy {
                                     .values()[new Random().nextInt(MAX_COUNT_OF_MODELS)]
                                     .toString();
 
-                            return new Car(randomPower, randomModel, randomYear);
+                            return CarBuilder.name(randomModel).year(randomYear).power(randomPower).build();
                         })
                 .collect(Collectors.toList());
         return cars;

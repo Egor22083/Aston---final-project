@@ -1,5 +1,7 @@
-package org.example;
+package org.example.fill;
 
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.FillHandler;
 import org.example.fill.FillOption;
 import org.example.fill.strategy.FillStrategy;
@@ -22,9 +24,9 @@ public class JsonFilllTest {
         actualCars = fillStrategy.fill(actualCars);
 
         List<Car> expectedCars = new ArrayList<>();
-        expectedCars.add(new Car(21, "w", 1990));
-        expectedCars.add(new Car(22, "ww", 1990));
-        expectedCars.add(new Car(23, "www", 1990));
+        expectedCars.add(CarBuilder.name("w").year(1990).power(21).build());
+        expectedCars.add(CarBuilder.name("ww").year(1990).power(22).build());
+        expectedCars.add(CarBuilder.name("www").year(1990).power(23).build());
 
         Assertions.assertEquals(actualCars, expectedCars);
     }
@@ -37,8 +39,8 @@ public class JsonFilllTest {
         actualCars = fillStrategy.fill(actualCars);
 
         List<Car> expectedCars = new ArrayList<>();
-        expectedCars.add(new Car(21, "w", 1990));
-        expectedCars.add(new Car(22, "ww", 1990));
+        expectedCars.add(CarBuilder.name("w").year(1990).power(21).build());
+        expectedCars.add(CarBuilder.name("ww").year(1990).power(22).build());
 
         Assertions.assertEquals(actualCars, expectedCars);
     }

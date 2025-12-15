@@ -1,5 +1,6 @@
-package org.example;
+package org.example.fill;
 
+import org.example.domain.Car;
 import org.example.fill.FillHandler;
 import org.example.fill.FillOption;
 import org.example.fill.rand.RandModels;

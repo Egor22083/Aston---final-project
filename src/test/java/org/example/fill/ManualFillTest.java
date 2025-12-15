@@ -1,5 +1,7 @@
-package org.example;
+package org.example.fill;
 
+import org.example.domain.Car;
+import org.example.domain.CarBuilder;
 import org.example.fill.FillHandler;
 import org.example.fill.FillOption;
 import org.example.fill.strategy.FillStrategy;
@@ -22,8 +24,8 @@ public class ManualFillTest {
         actualCars = fillStrategy.fill(actualCars);
 
         List<Car> expectedCars = new ArrayList<>();
-        expectedCars.add(new Car(1, "1", 1));
-        expectedCars.add(new Car(2, "2", 2));
+        expectedCars.add(CarBuilder.name("1").year(1).power(1).build());
+        expectedCars.add(CarBuilder.name("2").year(2).power(2).build());
 
         Assertions.assertEquals(actualCars, expectedCars);
     }
