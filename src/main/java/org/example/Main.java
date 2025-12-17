@@ -4,10 +4,7 @@ import org.example.console.OutputToTheConsole;
 import org.example.domain.Car;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,33 +30,35 @@ public class Main {
 
             cars = workingUser.fillings(cars, choice);//Здесь происходит магия заполнения
 
-            int sortingMethod = workingUser.chooseSortingMethod();//Выбор метода для сортировки
-            if(sortingMethod == 1 || sortingMethod == 2){
+            if (cars.stream().noneMatch(Objects::isNull)) {
+                int sortingMethod = workingUser.chooseSortingMethod();//Выбор метода для сортировки
+                if(sortingMethod == 1 || sortingMethod == 2){
 
-                fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
-            }
+                    fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
+                }
 
-            cars = workingUser.sortObjects(cars, fieldForSorting, sortingMethod);// Здесь происходит магия сортировки
+                cars = workingUser.sortObjects(cars, fieldForSorting, sortingMethod);// Здесь происходит магия сортировки
 
-            countElements = workingUser.selectingTheElementCount();//Сделать ли подсчет элементов
+                countElements = workingUser.selectingTheElementCount();//Сделать ли подсчет элементов
 
-            if(countElements.equals("yes")|| countElements.equals("да")){
-                count = workingUser.countElement(cars);//Здесь выбираются поля и идет подсчет
-            }
+                if(countElements.equals("yes")|| countElements.equals("да")){
+                    count = workingUser.countElement(cars);//Здесь выбираются поля и идет подсчет
+                }
 
-            int record = workingUser.recordSelection();// Выбор в каком виде записать данные
+                int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
-            Path path = workingUser.choosingPath();//выбор пути
+                Path path = workingUser.choosingPath();//выбор пути
 
-            String fileName = workingUser.choosingFileName();//Выбор названия файла
+                String fileName = workingUser.choosingFileName();//Выбор названия файла
 
-            Path fullPath = path.resolve(fileName);
-            System.out.println(fullPath);
+                Path fullPath = path.resolve(fileName);
+                System.out.println(fullPath);
 
-            try {
-                workingUser.recordCars(record, cars, fullPath);//Запись в файл
-            } catch (NullPointerException e) {
-                System.out.println("Ошибка при записе в файл");
+                try {
+                    workingUser.recordCars(record, cars, fullPath);//Запись в файл
+                } catch (NullPointerException e) {
+                    System.out.println("Ошибка при записе в файл");
+                }
             }
 
             flag = workingUser.isExit();//Выйти из программы или нет
