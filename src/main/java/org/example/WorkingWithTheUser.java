@@ -22,9 +22,9 @@ import java.util.*;
 
 public class WorkingWithTheUser {
     private static final int EXIT_CHOICE = 2;
-    private static final int FILL_IN_CHOICE = 3;
+    private static final int FILL_IN_CHOICE = 4;
     private static final int RECORD_SELECTION_CHOICE = 2;
-    private static final int FIELDS_FOR_SORTING_CHOICE = 3;
+    private static final int FIELDS_FOR_SORTING_CHOICE = 4;
     private static final int CHOOSE_SORTING_METHOD = 4;
 
     private static final Scanner scanner = new Scanner(System.in);
