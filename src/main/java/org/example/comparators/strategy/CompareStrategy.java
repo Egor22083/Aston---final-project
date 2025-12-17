@@ -1,6 +1,5 @@
 package org.example.comparators.strategy;
 
-import org.example.comparators.SpecialCompare;
 import org.example.comparators.strategy.handlers.*;
 import org.example.domain.Car;
 
