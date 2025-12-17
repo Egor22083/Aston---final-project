@@ -65,8 +65,6 @@ public class ManualFill implements FillStrategy {
                             return CarBuilder.name(model).year(year).power(power).build();
                         })
                 .collect(Collectors.toList());
-        scanner.close();
         return cars;
-
     }
 }
