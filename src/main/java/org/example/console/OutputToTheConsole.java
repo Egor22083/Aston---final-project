@@ -354,7 +354,6 @@ public class OutputToTheConsole {
         System.out.println("       Выбранный элемент встетился в коллекции " + count + " раз      ");
         System.out.println("╚════════════════════════════════════════════════════════════════════╝");
         System.out.println();
-        System.out.print("\t(да/нет)⮞  ");
     }
 
     public static void sayLimitations(){

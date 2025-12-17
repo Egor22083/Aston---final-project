@@ -42,7 +42,6 @@ public class ElementCounter {
         }
 
         int result = counter.get();
-        System.out.println("Количество вхождений элемента: " + result);
         return result;
     }
 

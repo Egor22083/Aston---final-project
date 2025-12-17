@@ -39,13 +39,13 @@ public class Main {
                 fieldForSorting = workingUser.selectingFieldsForSorting();//Выбор поля по которому сортировать
             }
 
+            cars = workingUser.sortObjects(cars, fieldForSorting, sortingMethod);// Здесь происходит магия сортировки
+
             countElements = workingUser.selectingTheElementCount();//Сделать ли подсчет элементов
 
             if(countElements.equals("yes")|| countElements.equals("да")){
                 count = workingUser.countElement(cars);//Здесь выбираются поля и идет подсчет
             }
-
-            cars = workingUser.sortObjects(cars, fieldForSorting, sortingMethod);// Здесь происходит магия сортировки
 
             int record = workingUser.recordSelection();// Выбор в каком виде записать данные
 
@@ -56,7 +56,11 @@ public class Main {
             Path fullPath = path.resolve(fileName);
             System.out.println(fullPath);
 
-            workingUser.recordCars(record, cars, fullPath);//Запись в файл
+            try {
+                workingUser.recordCars(record, cars, fullPath);//Запись в файл
+            } catch (NullPointerException e) {
+                System.out.println("Ошибка при записе в файл");
+            }
 
             flag = workingUser.isExit();//Выйти из программы или нет
             fieldForSorting = 0;
